@@ -12,13 +12,173 @@
 @media(max-height:520px){.screen{padding-block:12px}.title-copy{margin:10px 0}.subtitle{margin:2px 0 8px;font-size:15px}.title-copy h1{font-size:58px}.brief{margin:4px 0}.title-copy .action{margin-top:6px;padding:9px 16px}.panel{padding:16px 24px}.choice{padding:7px 13px}.touch .vitals,.touch .score{bottom:11vh}.touch .vitals{left:calc(5vw + 100px)}.touch .score{right:calc(5vw + 140px)}.top-right canvas{width:55px;height:55px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}.title-copy h1{font-family:Impact,"Arial Black",sans-serif;font-weight:400;letter-spacing:.014em}.gear{margin-left:10px;background:#15202ac9;border:1px solid #b8b6a377;padding:13px 15px;color:#eadbc9;border-radius:3px;font-size:14px}.gear:hover{border-color:var(--gold)}
 @media(max-height:520px){.gear{padding-block:8px}}
+.score #ammo{font:700 clamp(18px,2.2vw,32px)/1.4 Consolas,monospace}.kill-counter{font-size:11px;margin-top:5px}.score{min-width:105px}.score #ammoBar{background:var(--gold)}
+@media(max-height:520px){.touch .score{right:calc(5vw + 200px)}}
+/* Cartridge faceplate, stamped lettering and phosphor-lit arsenal slots. */
+#titleScreen{
+  --rim:#8b7869;--housing:#272830;--recess:#151720;
+  padding:clamp(16px,3.5vh,42px) clamp(18px,5.2vw,96px);
+  background:
+    linear-gradient(90deg,#171923e8 0%,#1b1a248c 34%,transparent 74%),
+    linear-gradient(0deg,#10131eea 0%,transparent 30%,transparent 76%,#15131a72);
+  isolation:isolate;
+}
+#titleScreen::before{
+  content:"";pointer-events:none;z-index:-1;position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,transparent 0 3px,#0c101b16 3px 4px);
+}
+#titleScreen .mast{
+  border-bottom:0;align-items:flex-start;padding-bottom:0;
+}
+#titleScreen .brand{
+  padding:6px 11px 7px 9px;gap:3px;letter-spacing:.12em;
+  font:900 14px/1.3 Consolas,monospace;
+  background:#1e202aeb;border:1px solid #8d8070;
+  box-shadow:inset 0 1px #c1aa805e,2px 2px #11121a;
+}
+#titleScreen .sigil{width:19px;height:17px}
+#titleScreen .ghost,
+#overlay[data-panel="armory"] #panelActions button:not(.action){
+  background:#282b35;color:#f0e2cb;border:1px solid #918375;border-radius:0;
+  box-shadow:inset 1px 1px #c1afa150,inset -2px -2px #141620,2px 2px #10131b;
+  padding:8px 14px;
+}
+#titleScreen .ghost:hover,#overlay[data-panel="armory"] #panelActions button:not(.action):hover{background:#484148;color:#fff7dd}
+#titleScreen .title-copy{
+  width:min(620px,80%);margin:4vh 0 2vh;
+}
+#titleScreen .chapter{
+  font:800 clamp(10px,.95vw,13px)/1.1 Consolas,monospace;letter-spacing:.24em;
+  color:#ffe4b6;text-shadow:1px 2px #211b26;
+}
+#titleScreen .chapter>span{
+  width:30px;height:8px;transform:skew(-17deg);
+  background:repeating-linear-gradient(90deg,#ffae65 0 5px,transparent 5px 8px);
+}
+#titleScreen .title-copy h1{
+  display:block;width:min(100%,clamp(270px,43vw,668px));margin:13px 0 0 -5px;
+  line-height:0;font-size:0;
+}
+.px-wordmark{display:block;image-rendering:pixelated;width:100%;height:auto;filter:drop-shadow(0 4px 6px #17142166)}
+#titleScreen .subtitle{
+  display:flex;align-items:center;gap:12px;width:max-content;
+  margin:0 0 21px 2px;font-weight:900;color:#f7e9cc;letter-spacing:.3em;
+  font-size:clamp(15px,1.55vw,23px);text-shadow:2px 2px #1c1723;
+}
+#titleScreen .subtitle::after{
+  content:"";width:42px;height:4px;
+  background:repeating-linear-gradient(90deg,#d19a6b 0 8px,transparent 8px 12px);
+}
+#titleScreen .brief{
+  font-size:clamp(13px,1.2vw,16px);line-height:1.7;color:#f3eadc;
+  margin:0 0 17px;text-shadow:0 1px 5px #15121b;
+}
+#titleScreen #deploy,#overlay[data-panel="armory"] #panelActions .action{
+  min-width:0;border:2px solid #302430;border-radius:0;
+  background:#eeb16a;color:#30202c;font-weight:900;padding:12px 19px;
+  box-shadow:inset 2px 2px #ffe1a2,inset -3px -3px #ac6447,3px 4px #10131e;
+  letter-spacing:.015em;margin:0;gap:32px;
+}
+#titleScreen #deploy::before{
+  content:"";width:12px;height:13px;background:#47303a;
+  clip-path:polygon(0 0,30% 0,30% 17%,56% 17%,56% 34%,79% 34%,79% 44%,100% 44%,100% 61%,79% 61%,79% 72%,56% 72%,56% 86%,30% 86%,30% 100%,0 100%);
+  margin-right:-19px;flex:none;
+}
+#titleScreen #deploy b{display:none}
+#titleScreen #deploy:hover,#overlay[data-panel="armory"] #panelActions .action:hover{background:#ffd38b;transform:translateY(-1px)}
+#titleScreen #deploy:active,#overlay[data-panel="armory"] #panelActions .action:active{transform:translate(2px,2px);box-shadow:inset 2px 2px #b67753,1px 2px #10131e}
+#titleScreen button#armory{display:none}
+#titleScreen .title-foot{
+  padding:12px 0 0;border-top:2px solid #ab927448;align-items:center;
+}
+#titleScreen .title-foot>div:first-child{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+#titleScreen .title-foot span{font-size:11px;color:#dbc7a9;margin:0}
+#titleScreen .location{color:#ebd0a3}
+#overlay[data-panel="armory"]{background:#10131fcc;backdrop-filter:blur(3px)}
+#overlay[data-panel="armory"] .panel{
+  width:min(870px,100%);padding:clamp(18px,3vw,34px);
+  border:2px solid #928778;border-radius:0;outline:2px solid #12141c;
+  background:linear-gradient(135deg,#32343e,#252730 62%,#282933);
+  box-shadow:inset 2px 2px #d6c0a34f,inset -3px -3px #121620,5px 6px #10121b99;
+}
+#overlay[data-panel="armory"] .panel h2{font-weight:900;letter-spacing:-.05em;font-size:clamp(26px,3vw,43px);margin:7px 0}
+#overlay[data-panel="armory"] #panelDesc{margin:8px 0 18px;font-size:13px;color:#d5d3cd}
+#overlay[data-panel="armory"] #panelBody{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+#overlay[data-panel="armory"] button.choice{
+  position:relative;display:flex;flex-flow:column;align-items:stretch;gap:0;
+  margin:0;padding:9px 9px 12px;text-align:left;
+  color:#f2ece1;background:#262931;border:1px solid #7a7974;border-radius:0;
+  box-shadow:inset 1px 1px #b4b0a44d,2px 2px #151720;
+  transition:background .13s,border-color .13s,transform .13s;
+}
+#overlay[data-panel="armory"] button.choice:is(:hover,:focus-visible,[aria-pressed="true"],[aria-selected="true"],.selected){
+  background:#383a40;border-color:var(--weapon-accent);box-shadow:inset 0 -3px var(--weapon-accent),2px 2px #141620;
+}
+#overlay[data-panel="armory"] .choice:focus-visible{outline-color:var(--weapon-accent);outline-offset:2px}
+#overlay[data-panel="armory"] .choice>b{
+  position:absolute;top:12px;right:14px;font:12px/1 monospace;color:var(--weapon-accent);
+}
+.px-art{
+  position:relative;display:grid;place-items:center;isolation:isolate;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 52%,#3a3e49,transparent 73%),#161b24;
+  border:1px solid #141822;box-shadow:inset 1px 1px #0006,inset -1px -1px #8c86813b;
+  margin:0 0 11px;padding:4px 2px;
+}
+.px-art::before{
+  content:"";position:absolute;inset:0;z-index:-1;opacity:.15;
+  background-image:linear-gradient(#90979c55 1px,transparent 1px),linear-gradient(90deg,#90979c55 1px,transparent 1px);background-size:12px 12px;
+}
+.px-art::after{
+  content:"";position:absolute;left:5px;bottom:5px;width:13px;height:3px;background:var(--weapon-accent);
+}
+.px-weapon{display:block;width:100%;height:auto;image-rendering:pixelated;filter:drop-shadow(2px 3px 0 #0c101ba8);transition:transform .18s}
+.choice:hover .px-weapon,.choice:focus-visible .px-weapon{transform:translateY(-2px)}
+#overlay[data-panel="armory"] .choice strong{font-size:clamp(15px,1.7vw,20px);padding:0 3px}
+#overlay[data-panel="armory"] .choice small{
+  padding:4px 3px 10px;color:#c5c5c6;font-size:12px;line-height:1.45;word-break:keep-all;
+}
+.px-spec{display:flex;justify-content:space-between;gap:5px;margin:auto 3px 0;border-top:1px solid #817d722e;padding:7px 0 0}
+.px-spec>span{display:flex;align-items:baseline;gap:4px;color:#c2c0bc;font-size:11px;white-space:nowrap}
+.px-spec em{font:700 14px/1 Consolas,monospace;color:var(--weapon-accent)}
+@media(max-width:620px){
+  #titleScreen{background:linear-gradient(0deg,#141822f7 2%,#151722d6 23%,#201b2570 60%,#181c2430 90%)}
+  #titleScreen .title-copy{width:100%;margin:auto 0 max(20px,6vh)}
+  #titleScreen .title-copy h1{width:min(87vw,470px);margin:9px 0 0 -3px}
+  #titleScreen .subtitle{margin-bottom:14px}#titleScreen .brief{margin-bottom:14px}
+  #titleScreen .ghost{padding:6px 9px}#titleScreen .brand{font-size:12px}
+  #titleScreen .title-foot{align-items:flex-end}#titleScreen .title-foot>div:first-child{gap:4px 8px}
+  #overlay[data-panel="armory"]{padding:12px}
+  #overlay[data-panel="armory"] #panelBody{grid-template-columns:1fr;gap:7px}
+  #overlay[data-panel="armory"] button.choice{
+    display:grid;grid-template-columns:30% 1fr;column-gap:10px;padding:6px 10px 6px 6px;min-height:76px;
+  }
+  #overlay[data-panel="armory"] .px-art{grid-row:1/4;margin:0}
+  #overlay[data-panel="armory"] .choice>b{top:8px;right:7px}
+  #overlay[data-panel="armory"] .choice strong{padding:0 10px 0 0;font-size:16px}
+  #overlay[data-panel="armory"] .choice small{padding:2px 0 4px;font-size:11px}
+  .px-spec{justify-content:flex-start;gap:13px;margin:0;padding:4px 0 0}
+}
+@media(max-height:520px){
+  #titleScreen{padding-block:10px}#titleScreen .title-copy{margin:8px 0}
+  #titleScreen .title-copy h1{width:min(360px,45vw);margin:2px 0 0}
+  #titleScreen .subtitle{font-size:14px;margin-bottom:5px}
+  #titleScreen .brief{margin:0 0 7px;font-size:12px;line-height:1.5}
+  #titleScreen #deploy{padding:8px 16px}
+  #titleScreen .title-foot{padding-top:5px}
+  #overlay[data-panel="armory"] .panel{padding:12px 16px}
+  #overlay[data-panel="armory"] #panelDesc{margin:4px 0 8px}
+  #overlay[data-panel="armory"] #panelActions{margin-top:9px}
+  .px-art{margin-bottom:4px}.px-weapon{max-height:59px;object-fit:contain}
+}
+@media(prefers-reduced-motion:reduce){.px-weapon,#titleScreen button{transition:none!important}}
+
 </style>
 </head><body>
 <canvas id="scene" aria-label="애시폴 1인칭 전투 화면"></canvas>
 <div id="titleScreen" class="screen title-screen">
  <header class="mast"><div class="brand"><i class="sigil" aria-hidden="true"></i>SURVIVOR <b>X</b></div><div class="header-tools"><button id="guideOpen" class="ghost">조작 안내</button><button id="settingsOpen" class="ghost">설정</button></div></header>
  <main class="title-copy"><div class="chapter"><span></span> SURVIVAL FPS</div><h1>ASHFALL<span>.</span></h1><p class="subtitle">재의 성채</p><p class="brief">잔해 속에서 적의 코어를 회수하고 무기를 강화하세요.<br>성채의 마지막 파수꾼이 깨어날 때까지.</p>
- <button id="deploy" class="action">출격하기 <b aria-hidden="true">↗</b></button> <button id="armory" class="gear" aria-label="시작 무기 모듈 변경"></button></main>
+ <button id="deploy" class="action">무기 선택 및 출격 <b aria-hidden="true">↗</b></button> <span id="armory" hidden></span></main>
  <footer class="title-foot"><div><span>개인 최고 기록</span><strong id="record">첫 출격 대기 중</strong></div><div class="location"><i></i> ASH CITADEL</div></footer>
 </div>
 <div id="hud" hidden>
@@ -26,11 +186,11 @@
  <div class="top-right"><canvas id="radar" width="110" height="110" aria-label="주변 적 위치"></canvas><button class="ghost" id="pause" aria-label="일시정지">Ⅱ</button></div>
  <div id="bossBar" hidden><div>성채의 파수꾼</div><div class="track"><i></i></div></div>
  <div class="vitals"><div class="tiny">SUIT INTEGRITY</div><div class="life"><strong id="hp">100</strong><span id="maxHp">/ 100</span></div><div class="track health"><i></i></div><div id="dashStatus"></div></div>
- <div class="score"><div class="tiny">ELIMINATIONS</div><strong id="kills">000</strong></div>
+ <div class="score"><div class="tiny" id="magLabel"></div><strong id="ammo"></strong><div class="track"><i id="ammoBar"></i></div><div class="kill-counter">처치 <span id="kills">000</span></div></div>
  <div class="level"><span id="level"></span><div class="track xp"><i></i></div></div>
  <div id="waveNotice" class="wave-notice" hidden></div><div id="hitmark" hidden>×</div><div class="reticle"><i></i></div>
 </div>
-<div id="touchUI" hidden><div id="movePad" aria-label="이동 조이스틱"><i></i></div><div class="touch-actions"><button id="dashBtn">대시</button><button id="fireBtn">발사</button></div></div>
+<div id="touchUI" hidden><div id="movePad" aria-label="이동 조이스틱"><i></i></div><div class="touch-actions"><button id="reloadBtn">장전</button><button id="dashBtn">대시</button><button id="fireBtn">발사</button></div></div>
 <div id="overlay" class="overlay" hidden><section class="panel" role="dialog" aria-modal="true" aria-labelledby="panelTitle"><div class="chapter" id="panelKicker"></div><h2 id="panelTitle"></h2><p id="panelDesc"></p><div id="panelBody"></div><div id="panelActions"></div></section></div>
 <script>/* Eclipse Foundry – a software-rendered arena. All art is drawn locally. */
 (() => {
@@ -382,12 +542,12 @@
     const pxPlane=-dy*fov,pyPlane=dx*fov;
     const skyCenter=Math.floor(skyW*(.5+angle/TAU));
     // Sample the panorama on cylindrical bearings, keeping the eclipse fixed to the landscape.
-    for(let y=0;y<=horizon;y++){
+    for(let y=0;y<=Math.min(h-1,horizon);y++){
       const sy=Math.max(0,Math.min(skyH-1,Math.floor(337-(horizon-y)*315/focus)));
       const base=sy*skyW,row=y*w;
       for(let x=0;x<w;x++) buffer[row+x]=sky[base+((skyCenter+skyOffset[x])&(skyW-1))];
     }
-    for(let y=horizon+1;y<h;y++){
+    for(let y=Math.max(0,horizon+1);y<h;y++){
       const z=.66*focus/(y-horizon);
       const fog=Math.min(15,(z*.56)|0);
       const ux=2*z*pxPlane/w,uy=2*z*pyPlane/w;
@@ -471,6 +631,11 @@
     wraith: { hp: 38, speed: 1.63, radius: .31, contact: 11, xp: 3 },
     brute: { hp: 84, speed: .94, radius: .41, contact: 16, xp: 5 },
     boss: { hp: 1480, speed: 1.22, radius: .46, contact: 22, xp: 0 }
+  };
+  const loadouts = {
+    carbine: {capacity:18, reload:1.14, damage:25, interval:.29, arc:0, pierce:0},
+    arc:     {capacity:12, reload:1.30, damage:21, interval:.29, arc:1, pierce:0},
+    rail:    {capacity:6,  reload:1.65, damage:43, interval:.46, arc:0, pierce:1}
   };
   const upgrades = [
     { id: 'power', name: '과충전 코어', desc: '탄환 피해 +35%', apply: s => s.damage *= 1.35 },
@@ -583,9 +748,46 @@
       stats: {damage: 25, interval: .29, pierce: 0, arc: 0, nova: 0, siphon: 0,
         magnet: 2.65, speed: 3.25, dashSpeed: 11, dashCooldown: 3.4}
     };
+    equip(g,'carbine');
     route(g);
     for (const offset of [0,-.4,.42]) spawn(g, 'drone', g.player.angle + offset);
     return g;
+  }
+
+  function equip(g, loadout) {
+    if (g.time !== 0 || g.state !== 'playing' || !Object.hasOwn(loadouts,loadout)) return false;
+    const gun = loadouts[loadout];
+    g.loadout = loadout;
+    g.ammo = gun.capacity;
+    g.magSize = gun.capacity;
+    g.reloadDuration = gun.reload;
+    g.reloadLeft = 0;
+    g.reloadHeld = false;
+    g.magInserted = false;
+    Object.assign(g.stats,{damage:gun.damage,interval:gun.interval,arc:gun.arc,pierce:gun.pierce});
+    return true;
+  }
+
+  function beginReload(g) {
+    if (g.ammo === g.magSize || g.reloadLeft > 0) return;
+    g.reloadLeft = g.reloadDuration;
+    g.magInserted = false;
+    sound('reloadOut');
+  }
+
+  function reload(g, dt, held) {
+    if (held && !g.reloadHeld) beginReload(g);
+    g.reloadHeld = !!held;
+    if (g.reloadLeft <= 0) return;
+    g.reloadLeft = Math.max(0,g.reloadLeft-dt);
+    if (!g.magInserted && g.reloadLeft <= g.reloadDuration*.4) {
+      g.magInserted = true;
+      sound('reloadIn');
+    }
+    if (g.reloadLeft === 0) {
+      g.ammo = g.magSize;
+      sound('reloadReady');
+    }
   }
 
   function hurt(g, amount, source) {
@@ -624,7 +826,7 @@
   }
 
   function fire(g, manual) {
-    if (g.nextShot > 0) return;
+    if (g.nextShot > 0 || g.reloadLeft > 0 || g.ammo <= 0) return;
     const p = g.player, c = Math.cos(p.angle), s = Math.sin(p.angle);
     const candidates = [];
     for (const e of g.entities) {
@@ -642,7 +844,7 @@
     }
     if (!manual && !candidates.length) return;
     candidates.sort((a,b)=>a.ahead-b.ahead);
-    g.shotSerial++; g.shot = .12; g.nextShot = g.stats.interval; sound('shot');
+    g.ammo--; g.shotSerial++; g.shot = .12; g.nextShot = g.stats.interval; sound('shot');
     for (const target of candidates.slice(0, 1 + g.stats.pierce)) {
       const e = target.enemy;
       hit(g,e,g.stats.damage);
@@ -659,6 +861,7 @@
         hit(g,enemy,g.stats.damage*.58,true,main);
       }
     }
+    if (!g.ammo && g.state === 'playing') beginReload(g);
   }
 
   function makeBolt(g, e, angle, speed) {
@@ -802,6 +1005,7 @@
       }
       g.nextSpawn = (1.8 - Math.min(g.wave,4)*.27)*(Math.random()*.4+.8);
     }
+    reload(g,dt,input.reload);
     fire(g,input.fire);
     const n = g.entities.length;
     for(let i=0;i<n && g.state==='playing';i++) {
@@ -823,7 +1027,7 @@
     for(let i=0;i<steps && g.state==='playing';i++) tick(g,elapsed/steps,frameInput);
   }
 
-  window.Combat = {start,update,choose};
+  window.Combat = {start,equip,update,choose};
 })();
 
 // Transient particles live in arena coordinates, so turning during an impact
@@ -1050,6 +1254,54 @@
     }
     pen.restore();
 
+
+    // Bake the interchangeable receivers once, using the same perspective as the base model.
+    const models={};
+    function captureModel(key){
+        const c=document.createElement('canvas');c.width=atlas.width;c.height=atlas.height;
+        c.getContext('2d').drawImage(atlas,0,0);models[key]=c;
+    }
+    captureModel('carbine');
+    function restoreBase(){
+        pen.save();pen.setTransform(1,0,0,1,0,0);pen.clearRect(0,0,atlas.width,atlas.height);
+        pen.drawImage(models.carbine,0,0);pen.restore();
+    }
+    for(const side of [-1,1]){
+        const x=side*10;
+        poly([[x-3,2,-.17],[x+3,3,-.17],[x+7,13,.25],[x-3,10,.25]],'#728d96','#19232c',1.8);
+        poly([[x,4,-.16],[x+2,5,-.16],[x+4,12,.21],[x+1,11,.21]],'#d5b8fd');
+    }
+    housing(.52,.67,13,30,40,4,dark);
+    topPlate(.535,.65,-7,6,40.2,'#92929f');
+    captureModel('rail');restoreBase();
+    for(let i=0;i<4;i++){
+        const t=.055+i*.072;
+        housing(t,t+.027,19,-8,16,6,steel);
+        topPlate(t+.004,t+.021,-11,10,16.4,'#87ece0');
+    }
+    housing(.67,.82,26,-14,20,7,dark);
+    topPlate(.685,.80,-13,11,20.4,'#6ab9bc');
+    captureModel('arc');restoreBase();
+
+    function magazine(ctx,x,y,angle,loadout,hand){
+        ctx.save();ctx.translate(x,y);ctx.rotate(angle);
+        const color=loadout==='arc'?'#7ef4e3':loadout==='rail'?'#d1acf4':'#eeb079';
+        function plate(points,fill){
+            ctx.beginPath();points.forEach(([px,py],i)=>i?ctx.lineTo(px,py):ctx.moveTo(px,py));
+            ctx.closePath();ctx.fillStyle=fill;ctx.fill();ctx.strokeStyle='#121e23';ctx.lineWidth=1.4;ctx.stroke();
+        }
+        plate([[-10,0],[6,-5],[17,0],[18,33],[11,42],[-8,43],[-13,34]],'#52666a');
+        plate([[6,-5],[17,0],[18,33],[11,42],[6,38]],'#263539');
+        plate([[-11,30],[6,27],[12,37],[9,43],[-9,44],[-14,37]],'#26393c');
+        ctx.fillStyle=color;ctx.fillRect(-8,5,5,18);ctx.fillRect(0,4,2,12);
+        if(hand){
+            plate([[-39,26],[-24,17],[-12,17],[-3,25],[1,35],[-6,43],[-21,44],[-46,72],[-61,54]],'#273a3e');
+            for(let i=0;i<3;i++)plate([[-21+i*2,19+i*6],[-12+i*3,14+i*7],[-4+i*2,19+i*6],[-6+i,23+i*6]],i===0?'#8b8877':'#586464');
+            plate([[-53,46],[-35,55],[-42,66],[-60,58]],'#918470');
+        }
+        ctx.restore();
+    }
+    const smooth=n=>{n=clamp(n,0,1);return n*n*(3-2*n);};
     let sway=0, walk=0, step=0, lastRun=null, shotNumber=0;
     let damageGradient = null, gradientW=0, gradientH=0;
     function drawWeapon(ctx,w,h,g,input={},dt=1/60) {
@@ -1068,6 +1320,13 @@
         const ox=w/2+(25+(minimal?0:Math.sin(step)*3*walk+Math.cos(phase)*.8-sway*2.1)+recoil*4)*u;
         const oy=h/2+(34+(minimal?0:Math.abs(Math.cos(step))*3.6*walk+Math.sin(phase)*1.25)+recoil*(minimal?3:11))*u;
         ctx.save();ctx.translate(ox,oy);ctx.scale(u,u);
+        const loading=g.reloadLeft>0;
+        const progress=loading?1-g.reloadLeft/g.reloadDuration:0;
+        const tilt=loading?smooth(progress/.16)*(1-smooth((progress-.76)/.24)):0;
+        if(loading){
+            ctx.translate(-54*tilt,12*tilt);
+            ctx.rotate(-tilt*(minimal?.09:.37));
+        }
         shotNumber=g.shotSerial ?? 0;
         if(shot>.47){
             const flash=(shot-.47)/.53;
@@ -1093,7 +1352,7 @@
                 ctx.lineTo((w/2-ox)/u+2*Math.sin(seed),(h/2-oy)/u);ctx.stroke();
             }
         }
-        ctx.drawImage(atlas,-left,-top,atlas.width/atlasScale,atlas.height/atlasScale);
+        ctx.drawImage(models[g.loadout]||atlas,-left,-top,atlas.width/atlasScale,atlas.height/atlasScale);
         if (g.loadout==='rail' || g.loadout==='arc' || g.ranks?.power || g.ranks?.arc || g.ranks?.nova) {
             const arc=g.loadout==='arc' || Boolean(g.ranks?.arc);
             const strength=Math.max(g.ranks?.power||0,g.ranks?.arc||0,g.ranks?.nova||0);
@@ -1104,6 +1363,15 @@
             const a=project(-14,18.6,.76), b=project(-14,18.6,1.11);
             ctx.moveTo(...a);ctx.lineTo(...b);ctx.stroke();
         }
+        ctx.globalAlpha=1;
+        if(loading){
+            // Eject the old cell, bring a fresh one up from the belt, then seat it.
+            const removing=progress<.42;
+            const travel=removing?smooth((progress-.13)/.28):1-smooth((progress-.42)/.18);
+            const reach=smooth(progress/.14)*(1-smooth((progress-.70)/.20));
+            const kick=Math.sin(clamp((progress-.6)/.12,0,1)*Math.PI)*3;
+            magazine(ctx,89-42*travel,116+(minimal?43:123)*travel-kick,travel*(removing?.34:-.24),g.loadout,reach>.08);
+        }else magazine(ctx,89,116,0,g.loadout,false);
         ctx.restore();
         if(g.dashTime>0 && !minimal){
             // The streaks start at the periphery, leaving the aim point clear.
@@ -1196,6 +1464,12 @@
         if(t-(lastSound[name]??-10)<(name==='gem'?.065:.022))return;
         lastSound[name]=t;
         switch(name){
+        case 'reloadOut':
+            air(t,2800,850,.085,.35);tone(t,230,96,.08,.18,'triangle');break;
+        case 'reloadIn':
+            air(t,1400,3400,.055,.43);tone(t,150,53,.105,.32);break;
+        case 'reloadReady':
+            air(t,3800,1500,.055,.26);tone(t+.022,620,900,.07,.12,'triangle');break;
         case 'shot':
             tone(t,165,39,.17,.67,'triangle');tone(t,870,152,.072,.14,'sawtooth');
             air(t,4900,670,.12,.74);tone(t+.055,90,41,.14,.23);break;
@@ -1299,6 +1573,143 @@
     Object.assign(window,{sfx,setGameSound,unlockGameSound,musicFrame,setGameMusic});
 })();
 
+/* Original cartridge lettering and arsenal portraits. No font or image downloads. */
+window.PixelTitle = (() => {
+  'use strict';
+  const glyphs = {
+    A:['0011100','0111110','1110111','1110111','1110111','1111111','1111111','1110111','1110111'],
+    S:['0111111','1111111','1110000','1110000','0111110','0000111','0000111','1111111','1111110'],
+    H:['1110111','1110111','1110111','1110111','1111111','1111111','1110111','1110111','1110111'],
+    F:['1111111','1111111','1110000','1110000','1111110','1111110','1110000','1110000','1110000'],
+    L:['1110000','1110000','1110000','1110000','1110000','1110000','1110000','1111111','1111111']
+  };
+  function canvas(w,h) {
+    const c=document.createElement('canvas');c.width=w;c.height=h;
+    c.setAttribute('aria-hidden','true');return c;
+  }
+  function wordmark(){
+    const letters='ASHFALL',c=canvas(236,53),ctx=c.getContext('2d');
+    const w=c.width,h=c.height,shape=new Uint8Array(w*h);
+    for(let letter=0;letter<letters.length;letter++){
+      const rows=glyphs[letters[letter]];
+      for(let y=0;y<36;y++)for(let x=0;x<28;x++){
+        if(rows[y>>2][x>>2]==='1'){
+          const skew=Math.floor((35-y)/6);
+          shape[(y+3)*w+5+letter*32+x+skew]=1;
+        }
+      }
+    }
+    const band=['#fff6cd','#ffea9e','#ffd77d','#ffd77d','#ffca68','#ffd06e','#ffab55','#ef8847','#e7783b'];
+    const pixel=(x,y,color)=>{ctx.fillStyle=color;ctx.fillRect(x,y,1,1)};
+    // Dark contour and stepped extrusion keep the lettering crisp over the live arena.
+    ctx.fillStyle='#181722';
+    for(let y=1;y<h;y++)for(let x=1;x<w;x++)if(shape[y*w+x])ctx.fillRect(x-1,y-1,5,10);
+    for(let step=6;step>=1;step--) {
+      ctx.fillStyle=step>3?'#632d3c':'#a74636';
+      for(let y=3;y<40;y++)for(let x=2;x<w-2;x++)if(shape[y*w+x])ctx.fillRect(x+1+(step>>2),y+step,1,1);
+    }
+    for(let y=3;y<40;y++)for(let x=1;x<w-1;x++){
+      const i=y*w+x;
+      if(!shape[i])continue;
+      let color=band[Math.min(8,(y-3)>>2)];
+      if(!shape[i+w])color='#b95337';
+      else if(!shape[i-w])color='#fff5be';
+      else if(!shape[i+1])color='#e78b47';
+      else if(!shape[i-1])color='#ffdfa0';
+      if(y===22 && shape[i-1] && shape[i+1])color='#ec9c4a';
+      pixel(x,y,color);
+    }
+    c.className='px-wordmark';return c;
+  }
+  const arsenal={
+    carbine:{glow:'#fbb071',light:'#ffe4a1',damage:25,interval:.29},
+    arc:{glow:'#74ded4',light:'#d9fff3',damage:21,interval:.29},
+    rail:{glow:'#c29aeb',light:'#fff0ff',damage:43,interval:.46}
+  };
+  function portrait(key){
+    const c=canvas(150,64),g=c.getContext('2d'),{glow,light}=arsenal[key];
+    const ink='#171a24',shade='#3d414b',metal='#717379',rim='#b3ad9c',edge='#e2d6b7';
+    const rect=(x,y,w,h,color)=>{g.fillStyle=color;g.fillRect(x,y,w,h)};
+    // Integer scanlines, including diagonals, give all three silhouettes the
+    // same hand-pixelled edges as the title lettering.
+    function poly(points,color) {
+      const ys=points.filter((_,i)=>i%2);
+      for(let y=Math.min(...ys);y<Math.max(...ys);y++){
+        const xx=[];
+        for(let n=0;n<points.length;n+=2) {
+          const j=(n+2)%points.length,x1=points[n],y1=points[n+1],x2=points[j],y2=points[j+1];
+          if((y+.5>=y1&&y+.5<y2)||(y+.5>=y2&&y+.5<y1))xx.push(x1+(y+.5-y1)*(x2-x1)/(y2-y1));
+        }
+        xx.sort((a,b)=>a-b);
+        for(let n=0;n+1<xx.length;n+=2)rect(Math.round(xx[n]),y,Math.round(xx[n+1])-Math.round(xx[n]),1,color);
+      }
+    }
+    if(key==='carbine'){
+      poly([10,26,21,24,31,27,45,25,49,18,75,16,81,20,98,20,102,24,131,24,137,27,137,35,105,35,98,39,83,39,80,51,68,51,67,39,54,38,48,51,36,50,39,39,31,36,14,44,9,43],ink);
+      poly([11,28,20,26,33,30,43,28,42,33,30,33,16,40,12,40],metal);
+      rect(14,28,5,9,shade);rect(22,28,7,2,rim);
+      poly([39,29,49,22,81,21,89,24,99,25,96,33,82,37,46,36],metal);
+      poly([40,32,56,31,62,34,87,32,82,36,47,37],shade);
+      rect(50,21,29,2,edge);rect(58,26,15,3,ink);rect(59,26,8,1,glow);
+      poly([71,38,80,37,78,48,72,49],metal);rect(73,40,5,2,shade);rect(72,44,5,2,shade);
+      poly([42,37,50,38,46,48,39,47],shade);
+      rect(99,27,36,6,shade);rect(101,26,23,2,rim);rect(127,24,8,10,metal);
+      rect(80,21,20,11,shade);for(let i=0;i<4;i++){rect(83+i*4,22,2,8,glow);rect(83+i*4,22,2,2,light);}
+      rect(53,16,19,4,shade);rect(55,15,15,2,rim);rect(69,16,3,3,glow);
+    }else if(key==='arc'){
+      poly([12,28,23,23,36,24,44,18,62,17,71,22,81,16,105,13,130,16,133,20,111,22,99,26,122,26,128,29,126,33,98,35,110,40,134,40,132,45,108,47,82,42,70,38,54,40,50,51,37,51,40,40,31,39,25,43,15,42],ink);
+      poly([15,29,24,26,37,27,39,33,27,35,23,40,17,39],metal);
+      poly([34,26,45,20,61,19,72,23,76,34,67,38,44,37,37,33],metal);
+      poly([38,27,47,22,59,22,66,26,65,32,54,35,44,33],shade);
+      poly([43,26,49,23,58,23,61,26,60,30,54,32,46,31],glow);
+      rect(48,25,10,2,light);rect(48,33,9,2,ink);
+      poly([42,38,51,39,48,49,40,48],shade);
+      for(const sign of [-1,1]) {
+        const yy=v=>30+sign*v;
+        poly([68,yy(4),82,yy(11),103,yy(15),128,yy(13),131,yy(11),106,yy(11),91,yy(5),75,yy(1)],metal);
+        poly([79,yy(6),101,yy(12),125,yy(12),102,yy(10),91,yy(6)],glow);
+      }
+      rect(64,28,59,4,shade);rect(76,28,46,1,light);
+      for(let i=0;i<4;i++)rect(68+i*5,25,2,10,glow);
+    }else{
+      poly([6,27,17,25,34,27,43,22,50,20,65,20,68,16,86,16,88,20,132,20,143,23,144,32,136,35,98,35,92,39,70,39,63,47,54,47,56,39,45,39,39,49,27,48,31,36,18,39,7,42],ink);
+      poly([8,29,17,27,33,29,40,26,36,33,18,35,10,39],metal);
+      rect(11,30,6,5,shade);rect(20,28,10,1,rim);
+      poly([35,28,48,23,67,22,91,23,100,27,91,35,78,37,43,36,34,33],metal);
+      poly([40,33,56,32,63,34,94,32,89,36,43,36],shade);
+      poly([34,37,43,37,38,47,30,46],shade);
+      rect(62,23,71,8,shade);rect(64,21,66,2,rim);
+      rect(68,25,65,2,glow);rect(81,25,47,1,light);
+      for(let i=0;i<5;i++){rect(72+i*8,22,3,10,metal);rect(72+i*8,22,3,2,edge);}
+      poly([126,21,138,22,142,25,141,30,135,33,124,32,129,29,136,28,136,24,127,24],metal);
+      rect(45,18,23,4,shade);rect(48,16,16,3,metal);rect(59,16,5,2,glow);
+      rect(51,27,9,2,ink);rect(51,27,4,1,glow);
+    }
+    c.className='px-weapon';return c;
+  }
+  function init(){
+    const title=document.querySelector('#titleScreen .title-copy h1');
+    if(!title||title.querySelector('canvas'))return;
+    title.setAttribute('aria-label','ASHFALL');
+    title.replaceChildren(wordmark());
+  }
+  function decorateLoadout(button,key,stats={}){
+    if(!arsenal[key]||button.querySelector('.px-weapon'))return;
+    const spec=arsenal[key];
+    button.style.setProperty('--weapon-accent',spec.glow);
+    const image=document.createElement('div');image.className='px-art';
+    image.setAttribute('aria-hidden','true');image.append(portrait(key));button.prepend(image);
+    const details=document.createElement('span');details.className='px-spec';
+    const interval=stats.interval??spec.interval,damage=stats.damage??spec.damage;
+    for(const [label,value] of [['피해',damage],['초당 발사',(1/interval).toFixed(1)]]){
+      const row=document.createElement('span'), caption=document.createElement('span'), data=document.createElement('em');
+      caption.textContent=label;data.textContent=value;row.append(caption,data);details.append(row);
+    }
+    button.append(details);
+  }
+  return {init,decorateLoadout};
+})();
+
 (() => {
 'use strict';
 const el = id => document.getElementById(id);
@@ -1310,27 +1721,40 @@ const prefsKey = 'survivor-x.ashfall.v1';
 let profile = {sound:true,music:true,loadout:'carbine',sensitivity:1,detail:'auto',wins:0,bestKills:0,bestTime:0,runs:0};
 try { Object.assign(profile,JSON.parse(localStorage.getItem(prefsKey)) || {}); } catch {}
 function save(){try {localStorage.setItem(prefsKey,JSON.stringify(profile));} catch {}}
-let g=null, panel='', mouseDown=false, touchFire=false, queuedDash=false, look=0, joyX=0, joyY=0;
+let g=null, panel='', mouseDown=false, touchFire=false, queuedDash=false, queuedReload=false, look=0, joyX=0, joyY=0;
 let touchMode=matchMedia('(pointer:coarse)').matches;
-let simClock=0, last=0, hudTime=0, noticeUntil=0, lastWave=0, wasLocked=false, resumeGrace=0;
+let simClock=0, last=0, hudTime=0, noticeUntil=0, lastWave=0, wasLocked=false, capturePending=false, captureTicket=0, desktopFallback=false, controllerGesture=false;
 let dragId=null, dragX=0, dragY=0, verticalLook=0, framesSlow=0, renderScale=1;
 const modules = {
-    carbine:{name:'펄스 카빈',desc:'균형형 · 빠른 단발 사격',apply:()=>{}},
-    arc:{name:'아크 전도기',desc:'연쇄형 · 약한 탄환이 주변 적에게 방전',apply:s=>{s.arc=1;s.damage=21;}},
-    rail:{name:'관통 가속기',desc:'관통형 · 느리고 강한 탄환이 적 둘을 관통',apply:s=>{s.pierce=1;s.damage=43;s.interval=.46;}}
+    carbine:{name:'펄스 카빈',desc:'균형형 · 빠른 단발 사격'},
+    arc:{name:'아크 전도기',desc:'연쇄형 · 약한 탄환이 주변 적에게 방전'},
+    rail:{name:'관통 가속기',desc:'관통형 · 느리고 강한 탄환이 적 둘을 관통'}
 };
 if(!Object.hasOwn(modules,profile.loadout))profile.loadout='carbine';
-function updateModule(){el('armory').textContent=modules[profile.loadout].name+'　⇄';}
+function updateModule(){el('armory').textContent=modules[profile.loadout].name;}
 function armory(){
-    dialog('armory','LOADOUT','시작 모듈','전투 중 코어를 회수하면 선택한 모듈을 더 강화할 수 있습니다.');
+    let selected=profile.loadout;
+    dialog('armory','ARMORY','무기 선택',touchMode?'무기를 고른 뒤 출격하세요.':'출격하면 마우스가 고정됩니다. Esc로 해제할 수 있습니다.');
+    const buttons=new Map();
+    const select=key=>{
+        selected=key;
+        for(const [id,button] of buttons)button.setAttribute('aria-pressed',String(id===key));
+        launch.textContent=modules[key].name+' 장착 · 출격';
+    };
+    const launch=btn('',()=>{
+        profile.loadout=selected;save();updateModule();newRun();
+    },true);
+    launch.id='launchRun';
     for(const [key,m] of Object.entries(modules)){
-        const b=btn('',()=>{profile.loadout=key;save();updateModule();back();});b.className='choice';
-        for(const [tag,label] of [['b',key===profile.loadout?'◆':'◇'],['strong',m.name],['small',m.desc]]){
-            const node=document.createElement(tag);node.textContent=label;b.append(node);
+        const button=btn('',()=>select(key));button.className='choice';button.dataset.weapon=key;
+        for(const [tag,label] of [['b','◆'],['strong',m.name],['small',m.desc]]){
+            const node=document.createElement(tag);node.textContent=label;button.append(node);
         }
-        el('panelBody').append(b);
+        PixelTitle.decorateLoadout(button,key);
+        buttons.set(key,button);el('panelBody').append(button);
     }
-    el('panelActions').append(btn('닫기',back));
+    el('panelActions').append(launch,btn('뒤로',back));
+    select(selected);
 }
 const home = el('titleScreen'), overlay = el('overlay');
 const demo = {time:0,player:{...World.start,angle:0},entities:[],bob:0};
@@ -1350,13 +1774,29 @@ function resize(){
 }
 function touchUI(){document.body.classList.toggle('touch',touchMode);el('touchUI').hidden=!(touchMode && g?.state==='playing' && !panel);}
 function clearInput(){
-    keySet.clear();mouseDown=touchFire=queuedDash=false;joyX=joyY=look=verticalLook=0;dragId=null;
+    keySet.clear();mouseDown=touchFire=queuedDash=queuedReload=false;joyX=joyY=look=verticalLook=0;dragId=null;
     el('movePad').firstElementChild.style.transform='';
 }
-function release(){if(document.pointerLockElement===canvas)document.exitPointerLock();}
+function release(){
+    ++captureTicket;capturePending=false;
+    if(document.pointerLockElement===canvas)document.exitPointerLock();
+}
+function captureFailed(ticket){
+    if(ticket!==captureTicket||!capturePending||!g||panel)return;
+    capturePending=false;
+    dialog('capture','MOUSE LOOK','마우스 고정','자유 시점을 사용하려면 다시 고정을 눌러 주세요. 브라우저가 고정을 지원하지 않으면 드래그로 조준할 수 있습니다.');
+    el('panelActions').append(btn('다시 고정',resume,true),btn('드래그로 플레이',()=>{desktopFallback=true;resume();}));
+    if(self!==top){const link=document.createElement('a');link.href=location.href;link.target='_blank';link.rel='noopener';link.className='minor';link.textContent='새 탭에서 열기';el('panelActions').append(link);}
+}
 function lock(){
-    if(touchMode || !canvas.requestPointerLock || document.pointerLockElement===canvas)return;
-    try {canvas.requestPointerLock()?.catch(()=>{});} catch {}
+    if(touchMode||controllerGesture||desktopFallback||document.pointerLockElement===canvas)return;
+    const ticket=++captureTicket;capturePending=true;
+    try {
+        if(!canvas.requestPointerLock){captureFailed(ticket);return;}
+        const result=canvas.requestPointerLock();
+        result?.catch(()=>captureFailed(ticket));
+        setTimeout(()=>{if(document.pointerLockElement!==canvas)captureFailed(ticket);},1800);
+    }catch{captureFailed(ticket);}
 }
 function btn(label,handler,primary=false){
     const b=document.createElement('button');b.className=primary?'action':'minor';b.textContent=label;b.onclick=handler;return b;
@@ -1368,7 +1808,7 @@ function row(parent,className,a,b){
     parent.append(r);
 }
 function dialog(name,kicker,title,desc=''){
-    panel=name;clearInput();release();touchUI();overlay.hidden=false;
+    panel=name;overlay.dataset.panel=name;clearInput();release();touchUI();overlay.hidden=false;
     if('inert' in home)home.inert=true;
     el('panelKicker').textContent=kicker;el('panelTitle').textContent=title;el('panelDesc').textContent=desc;
     el('panelBody').replaceChildren();el('panelActions').replaceChildren();
@@ -1376,16 +1816,16 @@ function dialog(name,kicker,title,desc=''){
 }
 function closeDialog(){panel='';overlay.hidden=true;if('inert' in home)home.inert=false;touchUI();}
 function newRun(){
-    closeDialog();g=Combat.start();g.loadout=profile.loadout;modules[g.loadout].apply(g.stats);home.hidden=true;el('hud').hidden=false;
+    closeDialog();desktopFallback=false;g=Combat.start();Combat.equip(g,profile.loadout);home.hidden=true;el('hud').hidden=false;
     window.setGameSound(profile.sound);window.setGameMusic(profile.music);window.unlockGameSound();clearInput();lastWave=0;hudTime=0;
-    last=performance.now();resumeGrace=last+500;touchUI();lock();updateHUD();
+    last=performance.now();touchUI();lock();updateHUD();
 }
 function toMenu(){
     g=null;closeDialog();clearInput();release();home.hidden=false;el('hud').hidden=true;touchUI();records();el('deploy').focus();
 }
 function resume(){
     if(!g||g.state!=='playing')return;
-    closeDialog();clearInput();last=performance.now();resumeGrace=last+400;lock();
+    closeDialog();clearInput();last=performance.now();lock();
 }
 function pause(){
     if(!g||g.state!=='playing'||panel)return;
@@ -1396,11 +1836,11 @@ function confirmExit(){
     dialog('exit','ABORT MISSION','작전을 종료할까요?','이번 출격의 기록과 강화가 저장되지 않습니다.');
     el('panelActions').append(btn('전투 계속',resume,true),btn('메인 메뉴로',toMenu));
 }
-function back(){if(g){closeDialog();pause();}else{closeDialog();el('deploy').focus();}}
+function back(){if(g && g.state!=="playing"){report(false);return;}if(g){closeDialog();pause();}else{closeDialog();el('deploy').focus();}}
 function guide(){
     dialog('guide','FIELD MANUAL','조작 안내','시야 중앙에 적을 두면 자동 사격합니다. 청록색 코어를 모을 때마다 무기를 강화할 기회가 생깁니다.');
-    const rows=touchMode?[['이동','왼쪽 조이스틱'],['시점 회전','화면 오른쪽 드래그'],['수동 사격 · 대시','오른쪽 버튼']]:[['이동','W A S D'],['시점 회전','마우스 또는 ← →'],['수동 사격','마우스 왼쪽 또는 F'],['대시','Shift 또는 Space'],['일시정지','Esc 또는 P']];
-    rows.push(['게임패드','왼쪽 스틱 이동 · 오른쪽 스틱 조준 · RT 발사 · A 대시']);
+    const rows=touchMode?[['이동','왼쪽 조이스틱'],['시점 회전','화면 오른쪽 드래그'],['발사 · 장전 · 대시','오른쪽 버튼']]:[['이동','W A S D'],['시점 회전','마우스 또는 ← →'],['수동 사격','마우스 왼쪽 또는 F'],['장전','R · 빈 탄창은 자동 장전'],['대시','Shift 또는 Space'],['일시정지','Esc 또는 P']];
+    rows.push(['게임패드','왼쪽 스틱 이동 · 오른쪽 스틱 조준 · RT 발사 · X 장전 · A 대시']);
     rows.forEach(([a,b])=>row(el('panelBody'),'guide-row',a,b));
     el('panelActions').append(btn('닫기',back,true));
 }
@@ -1423,7 +1863,7 @@ function settings(){
 }
 function choose(index){
     if(panel!=='upgrade'||!g?.choices?.[index])return;
-    Combat.choose(g,index);closeDialog();hudTime=0;last=performance.now();resumeGrace=last+400;lock();
+    Combat.choose(g,index);closeDialog();hudTime=0;last=performance.now();lock();
 }
 function upgrade(){
     dialog('upgrade','CORE SYNCHRONIZED','코어 강화','다음 전투에 적용할 강화 하나를 선택하세요.');
@@ -1435,11 +1875,11 @@ function upgrade(){
         el('panelBody').append(button);
     });
 }
-function report(){
-    const won=g.state==='won';profile.runs++;profile.wins+=Number(won);profile.bestTime=Math.max(profile.bestTime,g.time);profile.bestKills=Math.max(profile.bestKills,g.kills);save();
+function report(record=true){
+    const won=g.state==='won';if(record){profile.runs++;profile.wins+=Number(won);profile.bestTime=Math.max(profile.bestTime,g.time);profile.bestKills=Math.max(profile.bestKills,g.kills);save();}
     dialog('report',won?'CITADEL SECURED':'SIGNAL LOST',won?'성채 돌파':'신호 두절',won?'마지막 파수꾼이 쓰러졌습니다. 작전을 완료했습니다.':'슈트의 신호가 끊겼습니다. 다음 출격에서 새로운 강화 조합을 시도하세요.');
     [['생존 시간',asTime(g.time)],['처치',String(g.kills)],['도달 웨이브',two(g.wave)],['코어 레벨',String(g.level)]].forEach(([a,b])=>row(el('panelBody'),'stats-row',a,b));
-    el('panelActions').append(btn('재출격',newRun,true),btn('메인 메뉴',toMenu));
+    el('panelActions').append(btn('무기 선택 및 재출격',armory,true),btn('메인 메뉴',toMenu));
 }
 function fill(selector,value){document.querySelector(selector).style.transform='scaleX('+Math.max(0,Math.min(1,value))+')';}
 function drawRadar(){
@@ -1458,8 +1898,11 @@ function drawRadar(){
     radar.restore();radar.strokeStyle='#bbc7bb88';radar.beginPath();radar.arc(c,c,51,0,7);radar.stroke();radar.fillStyle='#fff3d6';radar.beginPath();radar.moveTo(c,c-5);radar.lineTo(c-3,c+3);radar.lineTo(c+3,c+3);radar.fill();
 }
 function updateHUD(){
+    el('ammo').textContent=two(g.ammo)+' / '+two(g.magSize);
+    el('magLabel').textContent=g.reloadLeft>0?'장전 중':modules[g.loadout].name;
+    el('ammoBar').style.transform='scaleX('+(g.reloadLeft>0?1-g.reloadLeft/g.reloadDuration:g.ammo/g.magSize)+')';
     el('wave').textContent='WAVE '+two(g.wave);el('clock').textContent=asTime(g.time);
-    el('objective').textContent=g.time<7?(touchMode?'왼쪽 이동 · 오른쪽 드래그 조준':'WASD 이동 · 마우스 조준 · Shift 대시'):g.time<g.bossAt?'파수꾼 출현까지 '+asTime(Math.ceil(g.bossAt-g.time)):'파수꾼을 처치하세요';
+    el('objective').textContent=g.time<7?(touchMode?'왼쪽 이동 · 오른쪽 드래그 조준':'WASD 이동 · R 장전 · Shift 대시'):g.time<g.bossAt?'파수꾼 출현까지 '+asTime(Math.ceil(g.bossAt-g.time)):'파수꾼을 처치하세요';
     el('hp').textContent=Math.ceil(Math.max(0,g.player.hp));el('maxHp').textContent='/ '+Math.round(g.player.maxHp);
     fill('.health i',g.player.hp/g.player.maxHp);el('dashStatus').textContent=g.dashReady>0?'대시 충전 '+g.dashReady.toFixed(1)+'s':'대시 준비';
     el('kills').textContent=String(g.kills).padStart(3,'0');el('level').textContent='LV '+two(g.level);fill('.xp i',g.xp/g.xpNeed);
@@ -1472,7 +1915,7 @@ const controller={buttons:[],x:0,y:0,turn:0,tilt:0,fire:false,dash:false};
 function pollController(){
     let pad;
     try{pad=Array.from(navigator.getGamepads?.()||[]).find(p=>p?.mapping==='standard');}catch{}
-    controller.x=controller.y=controller.turn=controller.tilt=0;controller.fire=controller.dash=false;
+    controller.x=controller.y=controller.turn=controller.tilt=0;controller.reload=controller.fire=controller.dash=false;
     if(!pad){controller.buttons=[];return;}
     const previous=controller.buttons;
     const buttons=pad.buttons.map(b=>b.pressed);controller.buttons=buttons;
@@ -1483,13 +1926,13 @@ function pollController(){
         const pos=list.indexOf(document.activeElement);
         const fwd=pressed(13)||pressed(15),rev=pressed(12)||pressed(14);
         if(list.length&&(fwd||rev))list[(pos+(fwd?1:-1)+list.length)%list.length].focus();
-        if(pressed(0)){const target=list.includes(document.activeElement)?document.activeElement:(panel?list[0]:el('deploy'));target?.click();}
+        if(pressed(0)){const target=list.includes(document.activeElement)?document.activeElement:(panel?list[0]:el('deploy'));controllerGesture=true;try{target?.click();}finally{controllerGesture=false;}}
         else if(pressed(1)||pressed(9)){if(panel==='pause')resume();else if(['guide','settings','armory','exit'].includes(panel))back();}
         return;
     }
     if(pressed(9)){pause();return;}
     controller.x=axis(0);controller.y=axis(1);controller.turn=axis(2);controller.tilt=axis(3);
-    controller.fire=buttons[7];controller.dash=pressed(0)||pressed(4);
+    controller.reload=pressed(2);controller.fire=buttons[7];controller.dash=pressed(0)||pressed(4);
 }
 function frame(now){
     const elapsed=last?(now-last)/1000:0;last=now;const dt=Math.min(.045,elapsed);
@@ -1498,13 +1941,14 @@ function frame(now){
         if(!g){
             simClock+=dt;if(!panel&&(!demo.drawn||simClock-demo.drawn>1/28)){demo.drawn=simClock;demo.time=simClock;demo.player.angle=.04+.09*Math.sin(simClock*.13);
             World.draw(ctx,canvas.width,canvas.height,demo);}
-        }else if(!panel){
+        }else if(!panel&&!capturePending){
             input.forward=Number(keySet.has('KeyW')||keySet.has('ArrowUp'))-Number(keySet.has('KeyS')||keySet.has('ArrowDown'))-joyY-controller.y;
             input.strafe=Number(keySet.has('KeyD'))-Number(keySet.has('KeyA'))+joyX+controller.x;
             input.turn=look+(Number(keySet.has('ArrowRight'))-Number(keySet.has('ArrowLeft')))*dt*2.35+controller.turn*dt*2.85*profile.sensitivity;look=0;
+            input.reload=queuedReload||controller.reload;queuedReload=false;
             input.fire=mouseDown||touchFire||keySet.has('KeyF')||controller.fire;input.dash=queuedDash||controller.dash;queuedDash=false;
             const focus=canvas.width/(2*Math.tan(35*Math.PI/180));
-            const limit=.34*canvas.height/focus;
+            const limit=Math.tan(68*Math.PI/180);
             g.aimSlope=Math.max(-limit,Math.min(limit,(g.aimSlope||0)-verticalLook-controller.tilt*dt*1.6*profile.sensitivity));
             g.horizon=.5+g.aimSlope*focus/canvas.height;
             verticalLook=0;
@@ -1524,7 +1968,7 @@ function frame(now){
     requestAnimationFrame(frame);
 }
 function setTouch(){if(!touchMode){touchMode=true;touchUI();}}
-el('armory').onclick=armory;updateModule();el('deploy').onclick=newRun;el('pause').onclick=pause;el('settingsOpen').onclick=settings;el('guideOpen').onclick=guide;
+PixelTitle.init();updateModule();el('deploy').onclick=armory;el('pause').onclick=pause;el('settingsOpen').onclick=settings;el('guideOpen').onclick=guide;
 window.addEventListener('keydown',e=>{
     if(panel){if(e.key==='Tab'){
         const list=[...overlay.querySelectorAll('button,input')];if(!list.length)return;
@@ -1533,16 +1977,16 @@ window.addEventListener('keydown',e=>{
     }
     if(e.repeat)return;
     if(panel==='upgrade'&&['1','2','3'].includes(e.key)){choose(+e.key-1);return;}
-    if(e.key==='Escape'){if(panel==='pause')resume();else if(['guide','settings','armory','exit'].includes(panel))back();}
+    if(e.key==='Escape'){if(panel==='armory'&&g)report(false);else if(['guide','settings','armory','exit'].includes(panel))back();}
     return;}
     if(!g)return;if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code))e.preventDefault();
-    keySet.add(e.code);if(!e.repeat){if(e.code==='KeyP'||e.code==='Escape')pause();else if(['ShiftLeft','ShiftRight','Space'].includes(e.code))queuedDash=true;}
+    keySet.add(e.code);if(!e.repeat){if(e.code==='KeyR')queuedReload=true;else if(e.code==='KeyP'||e.code==='Escape')pause();else if(['ShiftLeft','ShiftRight','Space'].includes(e.code))queuedDash=true;}
 });
 window.addEventListener('keyup',e=>keySet.delete(e.code));
 canvas.addEventListener('pointerdown',e=>{
     if(!g||panel)return;
     if(e.pointerType==='touch'){setTouch();if(dragId!==null)return;dragId=e.pointerId;dragX=e.clientX;dragY=e.clientY;canvas.setPointerCapture(e.pointerId);}
-    else if(e.button===0){mouseDown=true;if(document.pointerLockElement!==canvas){dragId=e.pointerId;dragX=e.clientX;dragY=e.clientY;lock();}}
+    else if(e.button===0){mouseDown=true;if(document.pointerLockElement!==canvas){dragId=e.pointerId;dragX=e.clientX;dragY=e.clientY;if(desktopFallback)canvas.setPointerCapture(e.pointerId);else lock();}}
 });
 window.addEventListener('mousemove',e=>{if(!panel&&g&&document.pointerLockElement===canvas){look+=e.movementX*.0024*profile.sensitivity;verticalLook+=e.movementY*.0019*profile.sensitivity;}});
 canvas.addEventListener('pointermove',e=>{
@@ -1558,16 +2002,18 @@ pad.onpointermove=e=>{if(e.pointerId===stickId)moveStick(e);};
 pad.onlostpointercapture=()=>{stickId=null;joyX=joyY=0;pad.firstElementChild.style.transform='';};
 el('fireBtn').onpointerdown=e=>{e.currentTarget.setPointerCapture(e.pointerId);touchFire=true;};
 el('fireBtn').onlostpointercapture=()=>touchFire=false;
+el('reloadBtn').onpointerdown=()=>queuedReload=true;
 el('dashBtn').onpointerdown=()=>queuedDash=true;
 document.addEventListener('pointerlockchange',()=>{
     const locked=document.pointerLockElement===canvas;
-    if(wasLocked&&!locked&&!panel&&g&&performance.now()>resumeGrace)pause();
+    if(locked){capturePending=false;if(panel||!g){release();return;}}
+    if(wasLocked&&!locked&&!panel&&g)pause();
     wasLocked=locked;
 });
 window.addEventListener('blur',()=>{clearInput();if(g&&!panel)pause();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){clearInput();pause();window.musicFrame(null);}});
 window.addEventListener('resize',resize);
-document.addEventListener('pointerdown',e=>{if(e.pointerType==='touch')setTouch();},{capture:true});
+document.addEventListener('pointerdown',e=>{if(e.pointerType==='touch')setTouch();else if(e.pointerType==='mouse'&&touchMode){touchMode=false;touchUI();}},{capture:true});
 resize();records();touchUI();requestAnimationFrame(frame);
 })();
 </script>
