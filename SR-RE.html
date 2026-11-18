@@ -62,36 +62,43 @@
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #020617; }
         ::-webkit-scrollbar-thumb { background: #06b6d4; border-radius: 3px; }
-    </style>
+    #main-menu{background:#12202d;color:#f1f0e7;overflow:auto;font-family:Inter,"Malgun Gothic",sans-serif;isolation:isolate}
+#frontier,.menu-shade{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+#frontier{object-fit:cover;object-position:68% center;image-rendering:pixelated;animation:land 2s ease-out}
+.menu-shade{background:linear-gradient(90deg,#0b131ef5 0%,#101b27c9 28%,transparent 73%),linear-gradient(0deg,#09121d 0%,transparent 30%)}
+.launch{min-height:100%;width:min(660px,100%);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:65px clamp(24px,6vw,108px) 85px;animation:launch-in .65s ease-out}
+.edition,.record,.controls{font:600 11px/1.5 monospace;letter-spacing:.17em}.edition{color:#f7bc8e}.launch h1{font:900 clamp(62px,8vw,128px)/.82 Impact,"Arial Black",sans-serif;letter-spacing:-.045em;margin:16px 0 22px}.launch h1 em{color:#ffc399;font-style:normal}
+.blurb{max-width:340px;font-size:15px;line-height:1.8;color:#d1d8d9;word-break:keep-all}
+.launch-actions{display:grid;gap:8px;width:min(320px,100%);margin:28px 0 14px}.launch-actions button{display:flex;justify-content:space-between;align-items:center;padding:13px 17px;background:#142332ed;border:1px solid #81919a;color:#f1eee6;font-weight:750;border-radius:4px}.launch-actions .deploy{background:#f5bc8f;border-color:#f5bc8f;color:#18212a}.launch button{transition:transform .2s,filter .2s}.launch button:hover{transform:translateX(4px);filter:brightness(1.12)}.subactions{display:flex;gap:20px;font-size:13px}.record{margin-top:22px;color:#acbbc3}.record strong{color:#eee}
+.controls{position:absolute;bottom:18px;left:6vw;color:#f2cbab}.controls span{color:#becbd1;letter-spacing:.02em;margin-right:10px}.crt-overlay{opacity:.22}.arcade-panel{animation:launch-in .25s ease-out;background:#111c28f5;border:1px solid #536777;box-shadow:0 20px 75px #0007}.arcade-panel h2{color:#e8c4a5}.preview-canvas-container{border:1px solid #526877;box-shadow:none}button:focus-visible{outline:3px solid #ffce97;outline-offset:3px}
+@keyframes launch-in{from{opacity:0;transform:translateY(12px)}}@keyframes land{from{transform:scale(1.035)}}
+@media(max-width:680px){#frontier{height:57%;object-position:80% center}.menu-shade{background:linear-gradient(0deg,#101b27 43%,transparent 85%)}.launch{padding-top:max(35vh,95px);padding-bottom:55px}.controls{font-size:9px}}
+@media(max-height:520px){.controls{position:static;margin:10px 6vw}.launch{padding-block:55px 10px}}
+@media(prefers-reduced-motion:reduce){*,*::after{animation:none!important;transition:none!important}}
+body:has(#main-menu.hidden) #coupon-strip,body:has(#armory-modal:not(.hidden)) #coupon-strip,body:has(#upgrades-modal:not(.hidden)) #coupon-strip{display:none}
+</style>
 </head>
 <body class="text-white">
 
     <div class="crt-overlay"></div>
 
     <!-- Top Left Easter Egg Coupon Code input (Main Menu) -->
-    <div class="absolute top-4 left-4 z-50 flex items-center gap-2 bg-black/85 p-2 rounded border border-cyan-500/60 shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+    <div id="coupon-strip" class="absolute top-4 left-4 z-50 flex items-center gap-2 bg-black/85 p-2 rounded border border-cyan-500/60 shadow-[0_0_15px_rgba(6,182,212,0.3)]">
         <span class="text-[10px] text-cyan-400 font-mono tracking-widest hidden sm:inline">COUPON:</span>
         <input type="text" id="easter-egg-input" placeholder="Enter code..." class="bg-gray-900 border border-cyan-500/50 rounded px-2 py-1 text-xs text-white font-mono w-28 sm:w-36 focus:outline-none focus:border-yellow-400 uppercase">
         <button onclick="checkEasterEgg()" class="bg-cyan-700 hover:bg-cyan-600 text-white font-black text-[10px] px-2.5 py-1 rounded tracking-widest border border-cyan-400">APPLY</button>
     </div>
 
     <!-- Main Arcade Menu -->
-    <div id="main-menu" class="absolute inset-0 bg-black/95 flex flex-col items-center justify-center z-40 transition-opacity duration-300 p-4 overflow-y-auto">
-        <div class="text-center mb-8">
-            <h1 class="text-6xl sm:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-red-500 to-yellow-400 mb-3 tracking-widest uppercase" style="filter: drop-shadow(0 0 25px rgba(239,68,68,0.8));">SURVIVOR X</h1>
-            <p class="text-cyan-400 tracking-[0.5em] text-xs sm:text-sm uppercase font-black bg-cyan-950/80 px-4 py-1.5 rounded border border-cyan-500 inline-block shadow-[0_0_15px_rgba(6,182,212,0.4)]">V5.0 INFINITUM REMASTERED</p>
-        </div>
-        
-        <div class="flex flex-col gap-5 w-full max-w-md items-center">
-            <button onclick="openArmoryModal()" class="w-full py-5 bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-black text-lg sm:text-xl rounded shadow-[0_0_30px_rgba(6,182,212,0.6)] border-2 border-cyan-300 transform transition hover:scale-105 active:scale-95 tracking-widest uppercase">
-                [ ARMORY & DEPLOY ]
-            </button>
-            <button onclick="openUpgradesModal()" class="w-full py-4 bg-gray-900 hover:bg-gray-800 text-yellow-400 border-2 border-yellow-500/80 font-black text-base sm:text-lg rounded shadow-[0_0_20px_rgba(234,179,8,0.3)] transform transition hover:scale-105 active:scale-95 tracking-widest uppercase">
-                [ SYSTEM UPGRADES ] (<span id="menu-gold-badge">0</span> CREDITS)
-            </button>
-        </div>
-    </div>
-
+    <div id="main-menu" class="absolute inset-0 z-40">
+<canvas id="frontier" aria-hidden="true"></canvas><div class="menu-shade"></div>
+<section class="launch"><p class="edition">INFINITUM REMASTERED</p>
+<h1>SURVIVOR <em>X</em></h1><p class="blurb">몰려오는 적을 피해 생존하고, 전리품으로 다음 출격을 준비하세요.</p>
+<div class="launch-actions"><button class="deploy" onclick="openArmoryModal()">무기 선택 및 출격 <span>↗</span></button>
+<button onclick="openUpgradesModal()">기지 업그레이드 <small><b id="menu-gold-badge">0</b> G</small></button></div>
+<div class="subactions"><button id="sound-switch" onclick="changeSound()"></button><button id="display-switch" onclick="changeDisplay()">전체 화면</button></div>
+<p class="record">최고 기록 <strong id="best-wave">—</strong></p></section>
+<footer class="controls">W A S D <span>이동</span> ESC <span>일시정지</span> · <span>터치 조이스틱 지원</span></footer></div>
     <!-- Weapon Selection & 3D Preview Modal -->
     <div id="armory-modal" class="absolute inset-0 bg-black/95 flex flex-col items-center justify-center z-40 hidden backdrop-blur-md p-4 overflow-y-auto">
         <div class="w-full max-w-4xl arcade-panel p-6 sm:p-8 rounded-lg relative">
@@ -242,11 +249,86 @@
     <canvas id="gameCanvas" class="z-10 block"></canvas>
 
     <script>
-        let audioCtx = null;
+        function paintFrontier() {
+    const canvas = document.getElementById('frontier');
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width = 800, h = canvas.height = 450;
+    let seed = 7321;
+    const noise = () => (seed = seed * 16807 % 2147483647) / 2147483647;
+    const sky = ctx.createLinearGradient(0, 0, 0, h);
+    sky.addColorStop(0, '#111c30'); sky.addColorStop(.54, '#496473'); sky.addColorStop(.82, '#ca906f'); sky.addColorStop(1, '#403d49');
+    ctx.fillStyle = sky; ctx.fillRect(0, 0, w, h);
+    for (let i = 0; i < 290; i++) {
+        ctx.fillStyle = 'rgba(230,240,235,' + noise() * .7 + ')';
+        ctx.fillRect(noise()*w, noise()*255, 1.3, 1);
+    }
+    ctx.save(); ctx.beginPath(); ctx.arc(565, 139, 95, 0, Math.PI*2); ctx.clip();
+    const planet = ctx.createLinearGradient(492, 66, 636, 198);
+    planet.addColorStop(0, '#ffe3b3'); planet.addColorStop(.42,'#efa47c'); planet.addColorStop(1,'#897375');
+    ctx.fillStyle = planet; ctx.fillRect(450, 32, 225, 210);
+    for(let i=0;i<850;i++){
+        ctx.fillStyle = noise()>.45?'#ffc19832':'#805c652b';
+        ctx.fillRect(450+noise()*220,40+noise()*200,3+noise()*52,1+noise()*2);
+    }
+    ctx.restore();
+    for(let layer=0;layer<4;layer++){
+        const base=264+layer*42;
+        ctx.fillStyle=['#657681','#4d5b66','#313e49','#172530'][layer];
+        ctx.beginPath();ctx.moveTo(0,h);
+        for(let x=0;x<=w+8;x+=8){
+            const ridge=18*Math.sin(x*.02+layer)+12*Math.cos(x*.039+layer)+Math.abs(Math.sin(x*.009-layer))*42;
+            ctx.lineTo(x,base-ridge-noise()*7);
+        }
+        ctx.lineTo(w,h);ctx.fill();
+    }
+    // Relay towers and a trail of windows give the distant outpost scale.
+    for(let i=0;i<36;i++){
+        const x=440+noise()*335, y=307+noise()*10, height=5+noise()*42;
+        ctx.fillStyle='#303c47';ctx.fillRect(x,y-height,4+noise()*10,height);
+        ctx.fillRect(x+2,y-height-7,1,8);
+        ctx.fillStyle='#efa77c';ctx.fillRect(x+2,y-height+4,2,1);
+    }
+    ctx.fillStyle='#0d1721';ctx.beginPath();ctx.moveTo(0,425);ctx.lineTo(335,390);ctx.lineTo(525,405);ctx.lineTo(640,353);ctx.lineTo(715,345);ctx.lineTo(800,361);ctx.lineTo(800,450);ctx.lineTo(0,450);ctx.fill();
+    // Pixel silhouette of the explorer, facing the light.
+    const pixel=(x,y,a,b,c)=>{ctx.fillStyle=c;ctx.fillRect(x,y,a,b)};
+    pixel(654,305,11,9,'#192633');pixel(655,305,9,2,'#c89b7b');pixel(654,309,7,2,'#9eb8b6');
+    pixel(653,315,15,19,'#16222c');pixel(650,318,4,14,'#293943');pixel(667,316,5,15,'#34434a');
+    pixel(654,333,5,17,'#14202b');pixel(663,332,5,16,'#14202b');pixel(652,349,7,3,'#14202b');
+    for(let i=0;i<3400;i++){ctx.fillStyle=noise()>.5?'#ffffff09':'#0000000b';ctx.fillRect(noise()*w,noise()*h,2,1)}
+}
+paintFrontier();
+function changeSound() {
+    saveData.muted = !saveData.muted;
+    saveGame(); updatePreferences();
+}
+function updatePreferences() {
+    const button = document.getElementById('sound-switch');
+    button.textContent = saveData.muted ? '효과음 꺼짐' : '효과음 켜짐';
+    button.setAttribute('aria-pressed', String(!saveData.muted));
+    document.getElementById('best-wave').textContent = saveData.bestWave ? 'WAVE ' + saveData.bestWave : '기록 없음';
+}
+async function changeDisplay() {
+    try {
+        if(document.fullscreenElement) await document.exitFullscreen();
+        else await document.documentElement.requestFullscreen();
+    } catch { alertBox('이 환경에서는 전체 화면을 사용할 수 없습니다.'); }
+}
+document.addEventListener('fullscreenchange', () => {
+    document.getElementById('display-switch').textContent = document.fullscreenElement ? '전체 화면 종료' : '전체 화면';
+});
+document.addEventListener('visibilitychange', () => {
+    if(document.hidden && gameState === 'PLAYING') {
+        Object.keys(keys).forEach(key => keys[key] = false);
+        joyActive = false; joyVector = {x:0,y:0}; joyKnob.style.transform = '';
+        togglePause();
+    }
+});
+let audioCtx = null;
         function initAudio() {
             if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
         function playSound(type) {
+            if(saveData.muted) return;
             try {
                 initAudio();
                 if(!audioCtx) return;
@@ -363,6 +445,7 @@
         }
 
         function updateWeaponPreviewMesh(weaponKey) {
+            if(!previewScene || !previewRenderer) return;
             if(previewMesh) previewScene.remove(previewMesh);
             const group = new THREE.Group();
             
@@ -409,7 +492,8 @@
 
         function animatePreview() {
             requestAnimationFrame(animatePreview);
-            if(previewMesh) previewMesh.rotation.y += 0.015;
+            if(document.getElementById('armory-modal').classList.contains('hidden')) return;
+            if(previewMesh && !matchMedia('(prefers-reduced-motion: reduce)').matches) previewMesh.rotation.y += 0.015;
             if(previewRenderer && previewScene && previewCamera) {
                 previewRenderer.render(previewScene, previewCamera);
             }
@@ -418,7 +502,11 @@
         function openArmoryModal() {
             document.getElementById('armory-modal').classList.remove('hidden');
             renderArmorySelection();
-            if(!previewRenderer) initWeaponPreview();
+            if(!previewRenderer) {
+                try { initWeaponPreview(); } catch {
+                    document.getElementById('preview-container').textContent = '3D 미리보기를 사용할 수 없습니다.';
+                }
+            }
         }
         function closeArmoryModal() { document.getElementById('armory-modal').classList.add('hidden'); }
 
@@ -1378,6 +1466,7 @@
 
         function gameOver() {
             gameState = 'GAMEOVER';
+            saveData.bestWave = Math.max(saveData.bestWave || 0, wave);
             saveData.gold += goldEarned;
             saveGame();
             
@@ -1388,6 +1477,7 @@
         }
 
         function returnToMenu() {
+            gameState = "MENU";
             document.getElementById('gameover-screen').classList.add('hidden');
             document.getElementById('pause-screen').classList.add('hidden');
             document.getElementById('hud').classList.add('hidden');
@@ -1396,6 +1486,7 @@
         }
 
         function initMenu() {
+            updatePreferences();
             updateMenuBadge();
             ['attack', 'maxHp', 'moveSpeed'].forEach(stat => {
                 document.getElementById(`upg-${stat}-lv`).innerText = saveData.upgrades[stat];
